@@ -9,3 +9,13 @@ dependencies = [
     "polars>=1.32.2",
     "ruff>=0.12.8",
 ]
+
+[tool.ruff]
+unsafe-fixes = true
+
+[tool.ruff.lint]
+select = [
+    "E4", "E7", "E9", "F", # default rules
+    "B", "A", # flake8 rules
+    "I", # isort rules
+]
