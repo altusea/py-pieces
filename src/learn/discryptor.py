@@ -102,5 +102,5 @@ if __name__ == "__main__":
     print(a.y)  # 输出: 10 (通过描述器获取)
     s = Directory(Path("~/workspace").expanduser())
     print(s.size)  # 输出: 目录中的文件数量 (通过描述器获取)
-    c = Component('WIDGET', 'metal', 5)
+    c = Component("WIDGET", "metal", 5)
     print(c.name, c.kind, c.quantity)  # 输出: WIDGET metal 5
