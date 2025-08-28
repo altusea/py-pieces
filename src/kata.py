@@ -1,3 +1,132 @@
+import math
+from collections import deque
+
+
+def all_permuted(array_length):
+    if array_length == 0:
+        return 1
+    elif array_length == 1:
+        return 0
+
+    # Using iterative dynamic programming approach
+    derangements = [0] * (array_length + 1)
+    derangements[0] = 1  # !0 = 1
+    derangements[1] = 0  # !1 = 0
+
+    for i in range(2, array_length + 1):
+        derangements[i] = (i - 1) * (derangements[i - 1] + derangements[i - 2])
+
+    return derangements[array_length]
+
+
+def knight(from_pos, to_pos):
+    """
+    Returns the minimum number of moves a knight needs to get
+    from one position to another on a chessboard.
+
+    Args:
+        from_pos (str): Starting position in algebraic notation (e.g. 'a3')
+        to_pos (str): Target position in algebraic notation (e.g. 'b5')
+
+    Returns:
+        int: Minimum number of moves, or 0 if start == end
+    """
+    if from_pos == to_pos:
+        return 0
+
+    # Convert algebraic notation to (row, col) where a1 = (0,0), h8 = (7,7)
+    def algebraic_to_coords(pos):
+        col = ord(pos[0].lower()) - ord("a")  # a->0, b->1, ..., h->7
+        row = int(pos[1]) - 1  # 1->0, 2->1, ..., 8->7
+        return row, col
+
+    start = algebraic_to_coords(from_pos)
+    target = algebraic_to_coords(to_pos)
+
+    # Check if positions are valid
+    def is_valid(r, c):
+        return 0 <= r < 8 and 0 <= c < 8
+
+    if not (is_valid(start[0], start[1]) and is_valid(target[0], target[1])):
+        raise ValueError("Invalid chess position")
+
+    # Knight moves: 8 possible L-shaped moves
+    moves = [(-2, -1), (-2, 1), (-1, -2), (-1, 2), (1, -2), (1, 2), (2, -1), (2, 1)]
+
+    # BFS to find shortest path
+    queue = deque([(start[0], start[1], 0)])  # (row, col, moves)
+    visited = set()
+    visited.add(start)
+
+    while queue:
+        r, c, dist = queue.popleft()
+
+        for dr, dc in moves:
+            nr, nc = r + dr, c + dc
+            if is_valid(nr, nc) and (nr, nc) not in visited:
+                if (nr, nc) == target:
+                    return dist + 1
+                visited.add((nr, nc))
+                queue.append((nr, nc, dist + 1))
+
+    return 0  # This should never happen on 8x8, but safety fallback
+
+
+def first_non_repeating_letter(s):
+    """
+    Returns the first character in the string that is not repeated,
+    ignoring case when determining repetition, but preserving the
+    original case in the returned character.
+
+    If all characters are repeated, returns an empty string.
+
+    Args:
+        s (str): Input string (can include Unicode characters)
+
+    Returns:
+        str: The first non-repeating character, or "" if none exists
+    """
+    # Create a case-insensitive count of characters
+    char_count = {}
+    for char in s:
+        key = char.lower()  # Case-insensitive counting
+        char_count[key] = char_count.get(key, 0) + 1
+
+    # Traverse the original string and find the first char with count == 1
+    for char in s:
+        if char_count[char.lower()] == 1:
+            return char
+
+    return ""
+
+
+def isPP(n):
+    """
+    Checks if n is a perfect power (n = m^k, k >= 2).
+    Returns [m, k] if true, otherwise None.
+    """
+    if n < 2:
+        return None  # By definition, perfect powers in this context are >= 2
+
+    # We'll try exponents k starting from 2 upwards.
+    # The maximum exponent k we need to try is log2(n), because 2^k <= n
+    max_k = math.floor(math.log(n, 2)) + 1  # Safe upper bound
+
+    for k in range(2, max_k + 1):
+        # Compute m = n^(1/k), rounded to nearest integer
+        m = round(n ** (1 / k))
+
+        # We only need to check m and possibly m-1 or m+1 due to rounding
+        # But usually m is either floor or ceil
+        for candidate in (m - 1, m, m + 1):
+            if candidate < 2:
+                continue
+            if candidate**k == n:
+                return [candidate, k]
+
+    return None
+
+
 def square_digits(num):
     ret = ""
     for x in str(num):
