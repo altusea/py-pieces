@@ -13,3 +13,8 @@ class Reverse:
             raise StopIteration
         self.index = self.index - 1
         return self.data[self.index]
+
+
+if __name__ == "__main__":
+    for char in Reverse("spam"):
+        print(char)

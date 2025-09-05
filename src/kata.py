@@ -2,6 +2,113 @@ import math
 from collections import deque
 
 
+def simple_assembler(program: str) -> dict:
+    """
+    Interprets a simple assembly-like language and returns the final state of registers.
+
+    Supported instructions:
+      mov x y - copies y (constant or register) into register x
+      inc x   - increases register x by 1
+      dec x   - decreases register x by 1
+      jnz x y - jumps to instruction y steps away if x is not zero
+
+    :param program: List of strings, each representing an instruction
+    :return: Dictionary with register names as keys and their integer values
+    """
+    registers = {}
+    pc = 0  # Program counter
+
+    while pc < len(program):
+        instruction = program[pc].strip()
+        if not instruction or instruction.startswith(
+            ";"
+        ):  # Skip empty or comment lines
+            pc += 1
+            continue
+
+        parts = instruction.split()
+        op = parts[0]
+
+        if op == "mov":
+            x, y = parts[1], parts[2]
+            # If y is a register, get its value; otherwise, assume it's an integer
+            val = registers[y] if y in registers else int(y)
+            registers[x] = val
+
+        elif op == "inc":
+            x = parts[1]
+            registers[x] += 1
+
+        elif op == "dec":
+            x = parts[1]
+            registers[x] -= 1
+
+        elif op == "jnz":
+            x, y = parts[1], parts[2]
+            # Evaluate x: register or constant
+            x_val = registers[x] if x in registers else int(x)
+            # Evaluate y: register or constant
+            y_val = registers[y] if y in registers else int(y)
+
+            if x_val != 0:
+                pc += y_val  # Jump relative to current position
+                continue  # Skip incrementing pc
+
+        # Move to next instruction
+        pc += 1
+
+    return registers
+
+
+def calc(expr: str):
+    ex = list(expr.replace(" ", ""))
+
+    def peek():
+        return ex[0] if ex else ""
+
+    def get():
+        return ex.pop(0)
+
+    def number():
+        result = get()
+        while peek() >= "0" and peek() <= "9" or peek() == ".":
+            result += get()
+        return float(result)
+
+    def factor():
+        if peek() >= "0" and peek() <= "9":
+            return number()
+        elif peek() == "(":
+            get()  # '('
+            result = expression()
+            get()  # ')'
+            return result
+        elif peek() == "-":
+            get()
+            return -factor()
+        return 0  # error
+
+    def term():
+        result = factor()
+        while peek() == "*" or peek() == "/":
+            if get() == "*":
+                result *= factor()
+            else:
+                result /= factor()
+        return result
+
+    def expression():
+        result = term()
+        while peek() == "+" or peek() == "-":
+            if get() == "+":
+                result += term()
+            else:
+                result -= term()
+        return result
+
+    return expression()
+
+
 def all_permuted(array_length):
     if array_length == 0:
         return 1
