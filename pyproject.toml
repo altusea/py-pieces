@@ -4,11 +4,13 @@ version = "2025.9.0"
 description = "Add your description here"
 requires-python = ">=3.13"
 dependencies = [
+    "anyio>=4.10.0",
     "mcp[cli]>=1.13.1",
     "orjson>=3.11.3",
     "polars>=1.33.0",
     "ruff>=0.12.12",
     "scikit-learn>=1.7.1",
+    "trio>=0.31.0",
 ]
 
 [tool.ruff]
