@@ -1,6 +1,6 @@
-from orjson import orjson
+import orjson
 
-from src.utils.model import Point
+from utils.model import Point
 
 p1 = Point(1, 2)
 json_str = orjson.dumps(p1)
