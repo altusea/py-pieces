@@ -1,0 +1,14 @@
+fix = true
+unsafe-fixes = true
+
+[lint]
+select = [
+  "E4",
+  "E7",
+  "E9",
+  "F",
+  "B",
+  "A",
+  "I",
+  "UP",
+]
