@@ -1,15 +1,33 @@
 [project]
 name = "py-pieces"
-version = "2025.11.0"
+version = "2025.12.0"
 description = "Python code pieces"
 requires-python = ">=3.14"
 dependencies = [
-  "anyio>=4.11.0",
-  "mcp[cli]>=1.21.0",
-  "orjson>=3.11.4",
-  "polars>=1.35.0",
-  "pydantic>=2.12.4",
-  "ruff>=0.14.4",
-  "scikit-learn>=1.7.2",
+  "anyio>=4.12.0",
+  "orjson>=3.11.5",
+  "polars>=1.36.1",
+  "pydantic>=2.12.5",
+  "scikit-learn>=1.8.0",
   "trio>=0.32.0",
 ]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.14.10",
+    "ty>=0.0.5",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.sources]
+"src" = "ulib"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ulib"]
+
+[tool.uv]
+python-preference = "managed"
+prerelease = "if-necessary-or-explicit"

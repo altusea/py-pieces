@@ -1,5 +1,4 @@
 import orjson
-
 from utils.model import Point
 
 p1 = Point(1, 2)
