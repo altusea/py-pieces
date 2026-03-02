@@ -1,21 +1,21 @@
 [project]
 name = "py-pieces"
-version = "2026.1.0"
+version = "2026.3.0"
 description = "Python code pieces"
 requires-python = ">=3.14"
 dependencies = [
   "anyio>=4.12.1",
-  "orjson>=3.11.5",
-  "polars>=1.37.0",
+  "orjson>=3.11.7",
+  "polars>=1.38.1",
   "pydantic>=2.12.5",
   "scikit-learn>=1.8.0",
-  "trio>=0.32.0",
+  "trio>=0.33.0",
 ]
 
 [dependency-groups]
 dev = [
-    "ruff>=0.14.11",
-    "ty>=0.0.11",
+    "ruff>=0.15.4",
+    "ty>=0.0.19",
 ]
 
 [build-system]
