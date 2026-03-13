@@ -6,7 +6,7 @@ requires-python = ">=3.14"
 dependencies = [
   "anyio>=4.12.1",
   "orjson>=3.11.7",
-  "polars>=1.38.1",
+  "polars>=1.39.0",
   "pydantic>=2.12.5",
   "scikit-learn>=1.8.0",
   "trio>=0.33.0",
@@ -14,8 +14,8 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-    "ruff>=0.15.4",
-    "ty>=0.0.19",
+  "ruff>=0.15.6",
+  "ty>=0.0.23",
 ]
 
 [build-system]
