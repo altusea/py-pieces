@@ -1,12 +1,12 @@
 [project]
 name = "py-pieces"
-version = "2026.4.0"
+version = "2026.7.0"
 description = "Python code pieces"
 requires-python = ">=3.14"
 dependencies = [
-  "anyio>=4.14.0",
+  "anyio>=4.14.1",
   "orjson>=3.11.9",
-  "polars>=1.42.0",
+  "polars>=1.42.1",
   "pydantic>=2.13.4",
   "scikit-learn>=1.9.0",
   "trio>=0.33.0",
@@ -14,8 +14,8 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-  "ruff>=0.15.19",
-  "ty>=0.0.53",
+  "ruff>=0.15.20",
+  "ty>=0.0.55"
 ]
 
 [build-system]
