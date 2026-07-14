@@ -4,7 +4,7 @@ version = "2026.7.0"
 description = "Python code pieces"
 requires-python = ">=3.14"
 dependencies = [
-  "anyio>=4.14.1",
+  "anyio>=4.14.2",
   "orjson>=3.11.9",
   "polars>=1.42.1",
   "pydantic>=2.13.4",
