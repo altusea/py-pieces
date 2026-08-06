@@ -30,5 +30,5 @@ packages = ["src/ulib"]
 
 [tool.uv]
 python-preference = "managed"
-prerelease = "if-necessary-or-explicit"
+prerelease = "if-necessary"
 resolution = "highest"
