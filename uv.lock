@@ -208,8 +208,8 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "ruff", specifier = ">=0.16.3" },
-    { name = "ty", specifier = ">=0.0.72" },
+    { name = "ruff", specifier = ">=0.16.9" },
+    { name = "ty", specifier = ">=0.0.84" },
 ]
 
 [[package]]
