@@ -79,9 +79,7 @@ class RhythmicNumberGenerator:
             return False
 
         # 排除顺子 (如 123456, 234567)
-        is_sequential = all(
-            digits[i + 1] - digits[i] == 1 for i in range(len(digits) - 1)
-        )
+        is_sequential = all(digits[i + 1] - digits[i] == 1 for i in range(len(digits) - 1))
         if is_sequential:
             return False
 
@@ -142,11 +140,7 @@ class RhythmicNumberGenerator:
         changes = []
         for i in range(len(tones) - 1):
             d = abs(tones[i] - tones[i + 1])
-            direction = (
-                "↑"
-                if tones[i + 1] > tones[i]
-                else ("↓" if tones[i + 1] < tones[i] else "-")
-            )
+            direction = "↑" if tones[i + 1] > tones[i] else ("↓" if tones[i + 1] < tones[i] else "-")
             changes.append(f"{d}{direction}")
         print(f"起伏强度: {' -> '.join(changes)}")
         print(f"韵律评分: {self.calculate_rhythm_score(num_str)}")

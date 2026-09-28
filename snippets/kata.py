@@ -20,9 +20,7 @@ def simple_assembler(program: str) -> dict:
 
     while pc < len(program):
         instruction = program[pc].strip()
-        if not instruction or instruction.startswith(
-            ";"
-        ):  # Skip empty or comment lines
+        if not instruction or instruction.startswith(";"):  # Skip empty or comment lines
             pc += 1
             continue
 
