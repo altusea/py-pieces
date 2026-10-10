@@ -8,7 +8,6 @@ dependencies = [
   "orjson>=3.13.0",
   "polars>=2.0.0",
   "pydantic>=2.14.0",
-  "scikit-learn>=1.9.1",
   "trio>=0.34.0",
 ]
 
