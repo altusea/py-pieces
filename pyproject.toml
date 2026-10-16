@@ -7,13 +7,13 @@ dependencies = [
   "anyio>=4.15.1",
   "orjson>=3.13.0",
   "polars>=2.0.0",
-  "pydantic>=2.14.0",
+  "pydantic>=2.14.1",
   "trio>=0.34.0",
 ]
 
 [dependency-groups]
 dev = [
-  "ruff>=0.17.0",
+  "ruff>=0.17.1",
   "ty>=0.0.88"
 ]
 
