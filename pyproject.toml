@@ -13,8 +13,8 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-  "ruff>=0.17.1",
-  "ty>=0.0.88"
+  "ruff>=0.17.2",
+  "ty>=0.0.91"
 ]
 
 [build-system]
